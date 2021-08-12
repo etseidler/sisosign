@@ -11,6 +11,9 @@ def sisosign(people: List[str]) -> None:
     Why not have a computer make these tough choices for you?
 
     PEOPLE is a list of one or more names. Only one will be chosen to stay.
+
+    If one of your PEOPLE's names is more than one word,
+    please use "double quotes" around their name.
     """
     if len(people) < 1:
         print("Please provide at least one name or use the --help option.")

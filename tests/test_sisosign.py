@@ -1,31 +1,39 @@
-import pytest
+from click.testing import CliRunner
 
-from sisosign import __version__
 from sisosign.sisosign import sisosign
 
 
-def test_version():
-    assert __version__ == "0.1.0"
-
-
-def test_returns_with_a_list_of_one_person():
+def test_works_with_a_list_of_one_person():
     people = ["Bill"]
-    expected = "Bill"
-    assert expected == sisosign(people)
+    runner = CliRunner()
+    result = runner.invoke(sisosign, people)
+    assert result.exit_code == 0
+    assert result.output == "Bill should stay\n"
 
 
-def test_returns_one_person_with_a_list_of_two_people():
+def test_prints_one_person_with_a_list_of_two_people():
     people = ["Dipper", "Mabel"]
-    actual = sisosign(people)
-    assert type(actual) == str
+    runner = CliRunner()
+    result = runner.invoke(sisosign, people)
+    assert result.exit_code == 0
+    assert len(result.output.split()) == 3
+    assert result.output.split()[0] in people
 
 
-def test_returns_one_person_with_a_list_of_three_people():
+def test_prints_one_person_with_a_list_of_three_people():
     people = ["Uncle Stan", "Soos", "Wendy"]
-    actual = sisosign(people)
-    assert type(actual) == str
+    runner = CliRunner()
+    result = runner.invoke(sisosign, people)
+    assert result.exit_code == 0
+    assert " ".join(result.output.split()[:-2]) in people
 
 
 def test_throws_exception_for_an_empty_list():
-    with pytest.raises(Exception):
-        sisosign([])
+    people = []
+    runner = CliRunner()
+    result = runner.invoke(sisosign, people)
+    assert result.exit_code == 1
+    assert (
+        result.output
+        == "Please provide at least one name or use the --help option.\n"
+    )
