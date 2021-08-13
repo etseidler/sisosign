@@ -1,8 +1,16 @@
 [tool.poetry]
 name = "sisosign"
-version = "0.3.1"
-description = "For those times when you can't decide who should go."
+version = "0.3.2"
+description = "A command-line tool for those times when you can't decide who should go."
 authors = ["Eric Seidler <eric.seidler@gmail.com>"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Utilities"
+]
+license = "MIT"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -19,6 +27,9 @@ black = {version = "^21.7b0", allow-prereleases = true}
 
 [tool.poetry.scripts]
 sisosign = 'sisosign.sisosign:sisosign'
+
+[tool.poetry.urls]
+"Homepage" = "https://github.com/etseidler/sisosign"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
