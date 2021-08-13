@@ -28,7 +28,7 @@ def test_prints_one_person_with_a_list_of_three_people():
     assert " ".join(result.output.split()[:-2]) in people
 
 
-def test_throws_exception_for_an_empty_list():
+def test_prints_helpful_message_for_an_empty_list():
     people = []
     runner = CliRunner()
     result = runner.invoke(sisosign, people)
